@@ -7,17 +7,25 @@ response = requests.get(url)
 
 soup = BeautifulSoup(response.text, "html.parser")
 
+
+
+scholarship = {
+    "title": "Erasmus Mundus Scholarship",
+    "country": "",
+    "degree_level": [],
+    "deadline": "",
+    "funding":"",
+    "eligibility":[],
+    "process":[]
+}
+
 field_aliases = {
     "degree_level": ["study level", "degree level", "level of study"],
     "country": ["study location", "host country", "country"],
-    "deadline": ["deadline", "application deadline", "last date to apply"]
-}
-
-scholarship = {
-    "title": "Erasmus",
-    "country": "",
-    "degree_level": [],
-    "deadline": ""
+    "deadline": ["deadline", "application deadline", "last date to apply"],
+    "funding": ["what does the erasmus mundus scholarship covers"],
+    "eligibility": ["eligibility criteria of the erasmus mundus joint masters scholarships"],
+    "process": ["how to apply for erasmus mundus scholarship"]
 }
 
 headings = soup.find_all("h3")
