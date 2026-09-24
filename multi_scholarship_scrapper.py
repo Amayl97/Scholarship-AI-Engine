@@ -45,6 +45,8 @@ for url in scholarship_links:
     "deadline": "",
     "funding":"",
     "eligibility":[],
+    "gpa_min": None,
+    "gpa_scale": None,
     "process":[]
      }
     
@@ -186,6 +188,13 @@ for scholarship in cleaned_scholarships:
 for scholarship in cleaned_scholarships:
     print("\n---", scholarship["title"], "---")
     for requirement in scholarship["eligibility"]:
-           if re.search(r"\d+", requirement):
-               print(requirement)
+        pattern = r"(?:gpa|cgpa)[^0-9]*(\d+(?:\.\d+)?)\s*/\s*(\d+(?:\.\d+)?)"
+        match = re.search(pattern, requirement, re.IGNORECASE)
+        if match:
+          scholarship["gpa_min"] = float(match.group(1))
+          scholarship["gpa_scale"] = float(match.group(2))
+          print(scholarship["gpa_min"])
+          print(scholarship["gpa_scale"])
+
+
 
